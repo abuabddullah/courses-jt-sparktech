@@ -1,0 +1,296 @@
+{
+  "info": {
+    "_postman_id": "8f9e2b5c-4b3d-4f8e-9d2c-1a2b3c4d5e6f",
+    "name": "Course Learning API",
+    "description": "API collection for Course Learning platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"student\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "profile"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Teacher",
+      "item": [
+        {
+          "name": "Create Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Introduction to TypeScript\",\n  \"description\": \"Learn the basics of TypeScript\",\n  \"level\": \"beginner\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/teacher/courses",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "teacher", "courses"]
+            }
+          }
+        },
+        {
+          "name": "Get Teacher Courses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/teacher/courses",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "teacher", "courses"]
+            }
+          }
+        },
+        {
+          "name": "Create Lesson",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"TypeScript Basics\",\n  \"content\": \"Learn about types in TypeScript\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/teacher/courses/{{courseId}}/lessons",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "teacher", "courses", "{{courseId}}", "lessons"]
+            }
+          }
+        },
+        {
+          "name": "Create Topic",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Basic Types\",\n  \"type\": \"content\",\n  \"content\": \"TypeScript supports several types including string, number, boolean...\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/teacher/lessons/{{lessonId}}/topics",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "teacher", "lessons", "{{lessonId}}", "topics"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Student",
+      "item": [
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/student/courses",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "student", "courses"]
+            }
+          }
+        },
+        {
+          "name": "Enroll in Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/student/courses/{{courseId}}/enroll",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "student", "courses", "{{courseId}}", "enroll"]
+            }
+          }
+        },
+        {
+          "name": "Like Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/student/courses/{{courseId}}/like",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "student", "courses", "{{courseId}}", "like"]
+            }
+          }
+        },
+        {
+          "name": "Follow Teacher",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/student/teachers/{{teacherId}}/follow",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "student", "teachers", "{{teacherId}}", "follow"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Public",
+      "item": [
+        {
+          "name": "Search Courses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/course?page=1&limit=10&searchTerm=typescript",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "course"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "searchTerm",
+                  "value": "typescript"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "token",
+      "value": "your_jwt_token_here"
+    },
+    {
+      "key": "courseId",
+      "value": "course_id_here"
+    },
+    {
+      "key": "lessonId",
+      "value": "lesson_id_here"
+    },
+    {
+      "key": "teacherId",
+      "value": "teacher_id_here"
+    }
+  ]
+}
